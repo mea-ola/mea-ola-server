@@ -85,26 +85,24 @@ app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
   }
 
   if (creatures[req.params.creature_id].time < 1) {  // we can go to the stat
-    if (stat != undefined) {
-      creatures[req.params.creature_id].status = stat;
-      creatures[req.params.creature_id].time = 9;
-      creatures[req.params.creature_id].stats[stat] += 1;
+    if (creatures[req.params.creature_id].fatigue < 25) {
+      creatures[req.params.creature_id].status = "tired";
+      creatures[req.params.creature_id].time = 99;
+    }
+    else if (creatures[req.params.creature_id].hunger < 25) {
+      creatures[req.params.creature_id].status = "hungry";
+      creatures[req.params.creature_id].time = 99;
     }
     else {
-      if (creatures[req.params.creature_id].fatigue < 25) {
-        creatures[req.params.creature_id].status = "tired";
-        creatures[req.params.creature_id].time = 99;
-      }
-      else if (creatures[req.params.creature_id].hunger < 25) {
-        creatures[req.params.creature_id].status = "hungry";
-        creatures[req.params.creature_id].time = 99;
+      if (stat != undefined) {
+        creatures[req.params.creature_id].status = stat;
+        creatures[req.params.creature_id].time = 9;
+        creatures[req.params.creature_id].stats[stat] += 1;
       }
       else {
-        creatures[req.params.creature_id].status = "idle";
+        creatures[req.params.creature_id].status = "idle";    
       }
     }
-  }
-  else {
   }
 
 
