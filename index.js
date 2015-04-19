@@ -11,7 +11,7 @@ creatures = [
   "stats": {
     "defense": 11,
     "intelligence": 15,
-    "skill": 12
+    "skills": 12
   },
   "hunger": 100,
   "fatigue": 100,
@@ -26,7 +26,7 @@ creatures = [
   "stats": {
     "defense": 15,
     "intelligence": 12,
-    "skill": 13
+    "skills": 13
   },
   "hunger": 50,
   "fatigue": 100,
@@ -88,7 +88,7 @@ app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
     if (stat != undefined) {
       creatures[req.params.creature_id].status = stat;
       creatures[req.params.creature_id].time = 9;
-      creatures[req.params.creature_id][stat] += 1;
+      creatures[req.params.creature_id].stats[stat] += 1;
     }
     else {
       if (creatures[req.params.creature_id].fatigue < 25) {
