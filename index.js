@@ -88,31 +88,26 @@ app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
     if (stat != undefined) {
       creatures[req.params.creature_id].status = stat;
       creatures[req.params.creature_id].time = 9;
+      creatures[req.params.creature_id][stat] += 1;
     }
     else {
-      creatures[req.params.creature_id].status = "idle";
+      if (creatures[req.params.creature_id].fatigue < 25) {
+        creatures[req.params.creature_id].status = "tired";
+        creatures[req.params.creature_id].time = 99;
+      }
+      else if (creatures[req.params.creature_id].hunger < 25) {
+        creatures[req.params.creature_id].status = "hungry";
+        creatures[req.params.creature_id].time = 99;
+      }
+      else {
+        creatures[req.params.creature_id].status = "idle";
+      }
     }
   }
   else {
-    creatures[req.params.creature_id].time -= 1;
   }
 
-  // if (creatures[req.params.creature_id].status == "idle") {
-  //   if (creatures[req.params.creature_id].fatigue < 25) {
-  //     creatures[req.params.creature_id].status = "tired";
-  //   }
-  //   else if (creatures[req.params.creature_id].hunger < 25) {
-  //     creatures[req.params.creature_id].status = "hungry";
-  //   }
-  // }
-  // else if (creatures[req.params.creature_id].status == "idle") {
-  //   if (creatures[req.params.creature_id].fatigue < 25) {
-  //     creatures[req.params.creature_id].status = "tired";
-  //   }
-  //   else if (creatures[req.params.creature_id].hunger < 25) {
-  //     creatures[req.params.creature_id].status = "hungry";
-  //   }
-  // }
+
 
   res.status(204).send(creatures[req.params.creature_id]);
 });
