@@ -17,7 +17,6 @@ creatures = [
   "fatigue": 100,
   "status": "idle",
   "time": 0
-  }
 },
 {
   "id": "1",
@@ -42,7 +41,7 @@ app.get('/creatures/:creature_id', function(req, res) {
 
 app.put('/creatures/:creature_id/rest', function(req, res) {
   creatures[req.params.creature_id].fatigue = 100; // pet is no longer fatigued
-  creatures[req.params.creature_id].status = "sleep"; // the pet is sleeping for 9 visits
+  creatures[req.params.creature_id].status = "sleeping"; // the pet is sleeping for 9 visits
   creatures[req.params.creature_id].time = 9;
 
   res.status(204).send(creatures[req.params.creature_id]);
@@ -50,12 +49,13 @@ app.put('/creatures/:creature_id/rest', function(req, res) {
 
 app.put('/creatures/:creature_id/feed', function(req, res) {
   creatures[req.params.creature_id].hunger = 100; // pet is no longer hungry
-  creatures[req.params.creature_id].status = {"eating": 9} // the pet is eating for 9 visits
+  creatures[req.params.creature_id].status = "eating"; // the pet is eating for 9 visits
+  creatures[req.params.creature_id].time = 9; // the pet is eating for 9 visits
 
   res.status(204).send(creatures[req.params.creature_id]);
 });
 
-app.put('/creatures/:creature_id/feed/:page_url', function(req, res) {
+app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
   if (creatures[req.params.creature_id].time > 0) {
     creatures[req.params.creature_id].time -= 1;
   }
