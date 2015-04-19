@@ -62,7 +62,12 @@ app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
 
   // get category of the page
   // hard-coding it to "games"
-  var category = "games";
+
+  var category = {
+    "espn.go.com": "sports",
+    "www.wikipedia.org": "reference",
+    "www.reddit.com": "home"
+  }[req.params.page_url];
 
   var skills = ["games", "kids and teens", "recreation", "sports", "shopping"];
   var defense = ["health", "regional", "world", "society", "home"];
@@ -100,7 +105,7 @@ app.put('/creatures/:creature_id/visit/:page_url', function(req, res) {
         creatures[req.params.creature_id].stats[stat] += 1;
       }
       else {
-        creatures[req.params.creature_id].status = "idle";    
+        creatures[req.params.creature_id].status = "idle";
       }
     }
   }
