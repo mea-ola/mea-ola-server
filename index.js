@@ -97,22 +97,22 @@ app.put('/creatures/:creature_id/feed/:page_url', function(req, res) {
     creatures[req.params.creature_id].time -= 1;
   }
 
-  if (creatures[req.params.creature_id].status == "idle") {
-    if (creatures[req.params.creature_id].fatigue < 25) {
-      creatures[req.params.creature_id].status = "tired";
-    }
-    else if (creatures[req.params.creature_id].hunger < 25) {
-      creatures[req.params.creature_id].status = "hungry";
-    }
-  }
-  else if (creatures[req.params.creature_id].status == "idle") {
-    if (creatures[req.params.creature_id].fatigue < 25) {
-      creatures[req.params.creature_id].status = "tired";
-    }
-    else if (creatures[req.params.creature_id].hunger < 25) {
-      creatures[req.params.creature_id].status = "hungry";
-    }
-  }
+  // if (creatures[req.params.creature_id].status == "idle") {
+  //   if (creatures[req.params.creature_id].fatigue < 25) {
+  //     creatures[req.params.creature_id].status = "tired";
+  //   }
+  //   else if (creatures[req.params.creature_id].hunger < 25) {
+  //     creatures[req.params.creature_id].status = "hungry";
+  //   }
+  // }
+  // else if (creatures[req.params.creature_id].status == "idle") {
+  //   if (creatures[req.params.creature_id].fatigue < 25) {
+  //     creatures[req.params.creature_id].status = "tired";
+  //   }
+  //   else if (creatures[req.params.creature_id].hunger < 25) {
+  //     creatures[req.params.creature_id].status = "hungry";
+  //   }
+  // }
 
   res.status(204).send(creatures[req.params.creature_id]);
 });
