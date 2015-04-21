@@ -2,5 +2,5 @@
 
 A most excellent virtual pet for your browser!
 
-This branch describes the node server to expose the API
+This branch describes the node server to expose the API  
 http://docs.meaola.apiary.io/#
